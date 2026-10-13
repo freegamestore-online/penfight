@@ -1,0 +1,14 @@
+{
+  "name": "penfight",
+  "private": true,
+  "packageManager": "pnpm@10.30.3",
+  "engines": { "node": ">=22" },
+  "pnpm": { "onlyBuiltDependencies": ["esbuild"] },
+  "scripts": {
+    "dev": "pnpm --filter @penfight/web dev",
+    "build": "pnpm --filter @penfight/web build",
+    "preview": "pnpm --filter @penfight/web preview",
+    "typecheck": "pnpm --filter @penfight/web exec tsc -b",
+    "test": "pnpm --filter @penfight/web test"
+  }
+}
