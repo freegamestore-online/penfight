@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Landscape phones: menus switch to a side-by-side layout so nothing needs scrolling. */
+@custom-variant compact (@media (max-height: 600px));
+@custom-variant short (@media (max-height: 520px) and (orientation: landscape));
+
 /* Fonts loaded via <link> in index.html (Manrope + Fraunces from Google Fonts) */
 
 :root {
@@ -58,7 +62,7 @@
   }
 }
 
-/* Games are fullscreen — no document scroll, no text selection */
+/* Games are fullscreen: no document scroll. Text stays selectable; only controls and the canvas block selection. */
 html {
   height: 100%;
   overflow: hidden;
@@ -70,10 +74,18 @@ body {
   overflow: hidden;
   background: var(--paper);
   color: var(--ink);
-  -webkit-user-select: none;
-  user-select: none;
   -webkit-touch-callout: none;
   touch-action: manipulation;
+}
+
+button,
+canvas,
+nav,
+label,
+[role='button'],
+[role='radio'] {
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 #root {

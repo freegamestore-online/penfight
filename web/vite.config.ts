@@ -13,6 +13,11 @@ export default defineConfig({
       workbox: {
         globPatterns: ["**/*.{js,css,html,png,svg,ico,woff2,wasm,json}"],
         maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
+        // New deploys take over straight away, and opening from the home screen offline serves the app shell.
+        skipWaiting: true,
+        clientsClaim: true,
+        navigateFallback: "/index.html",
+        navigateFallbackDenylist: [/^\/api/, /^\/v1/],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -41,15 +46,15 @@ export default defineConfig({
       // field passes through to the emitted manifest.webmanifest; browsers
       // ignore unknown members.
       manifest: {
-        name: "penfight",
-        short_name: "penfight",
-        description: "penfight — free forever",
+        name: "Pen Fight",
+        short_name: "Pen Fight",
+        description: "Flick your pen and knock your opponent's pen off the table. Two players or vs CPU. Free, offline, no sign-up.",
         start_url: "/",
         display: "standalone",
         background_color: "#0f0f0f",
         theme_color: "#2563eb",
         orientation: "any",
-        min_viewport_width: 360,
+        min_viewport_width: 320,
         icons: [
           { src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
           { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
